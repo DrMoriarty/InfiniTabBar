@@ -1,22 +1,21 @@
 //
 //  InfiniTabBar.h
 //  Created by http://github.com/iosdeveloper
+//  Edited by https://github.com/tolgatanriverdi
 //
 
 #import <UIKit/UIKit.h>
 
 @protocol InfiniTabBarDelegate;
 
-@interface InfiniTabBar : UIScrollView
+@interface InfiniTabBar : UIScrollView <UIScrollViewDelegate, UITabBarDelegate>
 
-@property (nonatomic, weak) id<InfiniTabBarDelegate> infiniTabBarDelegate;
-@property (nonatomic, strong) NSMutableArray *tabBars;
-@property (nonatomic, strong) UITabBar *aTabBar;
-@property (nonatomic, strong) UITabBar *bTabBar;
 
-- (id)initWithItems:(NSArray *)items;
+@property (nonatomic, assign) id infiniTabBarDelegate;
+
+
+- (id)initWithItems:(NSArray *)items andBackgroundColor:(UIColor*)tabBackgroundColor;
 - (void)setBounces:(BOOL)bounces;
-// Don't set more items than initially
 - (void)setItems:(NSArray *)items animated:(BOOL)animated;
 - (int)currentTabBarTag;
 - (int)selectedItemTag;
