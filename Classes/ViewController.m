@@ -4,7 +4,6 @@
 //
 
 #import "ViewController.h"
-#import "VSTabBar.h"
 
 @implementation ViewController
 
@@ -19,7 +18,6 @@
 	
 	// Items
     
-    /*
 	UITabBarItem *favorites = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:0];
 	UITabBarItem *topRated = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:1];
 	UITabBarItem *featured = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:2];
@@ -34,10 +32,8 @@
     UITabBarItem *mostPopular = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:11];
     UITabBarItem *veryPopular = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:12];
     UITabBarItem *nazarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"topbar_icon"] tag:13];
-     */
     
     
-    /*
      UIColor *tabBGColor = [UIColor lightGrayColor];
      self.tabBar = [[InfiniTabBar alloc] initWithItems:[NSArray arrayWithObjects:favorites,
      topRated,
@@ -67,49 +63,6 @@
      [downloads release];
      [mostRecent release];
      [mostViewed release];
-     */
-    
-    
-    VSTabBarItem *item1 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"nazar.png"] andTag:0];
-    VSTabBarItem *item2 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"Beer.png"] andTag:1];
-    VSTabBarItem *item3 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"Basket.png"] andTag:2];
-    VSTabBarItem *item4 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"topbar_icon.png"] andTag:3];
-    VSTabBarItem *item5 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"Money-Bag.png"] andTag:4];
-    VSTabBarItem *item6 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"nazar.png"] andTag:5];
-    VSTabBarItem *item7 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"Beer.png"] andTag:6];
-    VSTabBarItem *item8 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"Basket.png"] andTag:7];
-    VSTabBarItem *item9 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"topbar_icon.png"] andTag:8];
-    VSTabBarItem *item10 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"Money-Bag.png"] andTag:9];
-    VSTabBarItem *item11 = [[VSTabBarItem alloc] initWithImage:[UIImage imageNamed:@"nazar.png"] andTag:10];
-    
-	
-    UIColor *tabBGColor = [UIColor lightGrayColor];
-    self.tabBar = [[InfiniTabBar alloc] initWithItems:[NSArray arrayWithObjects:item1,
-                                                       item2,
-                                                       item3,
-                                                       item4,
-                                                       item5,
-                                                       item6,
-                                                       item7,
-                                                       item8,
-                                                       item9,
-                                                       item10,
-                                                       item11,
-                                                       nil] andBackgroundColor:tabBGColor];
-    
-    
-    [item1 release];
-    [item2 release];
-    [item3 release];
-    [item4 release];
-    [item5 release];
-    [item6 release];
-    [item7 release];
-    [item8 release];
-    [item9 release];
-    [item10 release];
-    [item11 release];
-    
 
 	
 	// Don't show scroll indicator
@@ -187,7 +140,7 @@
 	
 	self.dLabel = [[UILabel alloc] initWithFrame:CGRectMake(258.0, 315.0, 42.0, 21.0)];
 	self.dLabel.text = @"1";
-	self.dLabel.textAlignment = UITextAlignmentRight;
+	self.dLabel.textAlignment = NSTextAlignmentRight;
 	
 	[self.view addSubview:self.dLabel];
 	
@@ -198,7 +151,7 @@
 	
 	
 	self.fLabel = [[UILabel alloc] initWithFrame:CGRectMake(258.0, 344.0, 42.0, 21.0)];
-	self.fLabel.textAlignment = UITextAlignmentRight;
+	self.fLabel.textAlignment = NSTextAlignmentRight;
 	
 	[self.view addSubview:self.fLabel];
 	

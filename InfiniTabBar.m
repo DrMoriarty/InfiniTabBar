@@ -5,12 +5,11 @@
 //
 
 #import "InfiniTabBar.h"
-#import "VSTabBar.h"
 
-@interface InfiniTabBar()<VSTabBarDelegate>
+@interface InfiniTabBar()<UITabBarDelegate>
 @property (nonatomic, retain) NSMutableArray *tabBars;
-@property (nonatomic, retain) VSTabBar *aTabBar;
-@property (nonatomic, retain) VSTabBar *bTabBar;
+@property (nonatomic, retain) UITabBar *aTabBar;
+@property (nonatomic, retain) UITabBar *bTabBar;
 @end
 
 @interface InfiniTabBar()<UIScrollViewDelegate, UITabBarDelegate>
@@ -50,7 +49,6 @@
                 }
             }
             
-            /*
             UITabBar *tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(x, 0.0, TAB_BAR_WIDTH*len, CONTENT_HEIGHT)];
             tabBar.backgroundColor = tabBackgroundColor;
             tabBar.barTintColor = tabBackgroundColor;
@@ -58,23 +56,13 @@
 			
 			tabBar.items = [items objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(d * ITEMS_PER_PAGE, len)]];
             //NSLog(@"NEW TABBAR ITEM COUNT: %d",tabBar.items.count);
-             */
             
-            VSTabBar *tabBar = [[VSTabBar alloc] initWithFrame:CGRectMake(x, 0.0, TAB_BAR_WIDTH*len, CONTENT_HEIGHT)];
-            tabBar.backgroundColor = tabBackgroundColor;
-            tabBar.delegate = self;
-            tabBar.drawImage = YES;
-            tabBar.drawTitle = NO;
-            
-            [tabBar setItems:[items objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(d * ITEMS_PER_PAGE, len)]]];
-            
-			
 			[self addSubview:tabBar];
 			
 			[self.tabBars addObject:tabBar];
 			
 			
-			x += TAB_BAR_WIDTH*tabBar.itemList.count;
+			x += TAB_BAR_WIDTH*tabBar.items.count;
             [tabBar release];
 		}
 		
@@ -122,13 +110,13 @@
 		
 		if (count > 0) {
 			if (self.aTabBar == nil) {
-				self.aTabBar = [[[VSTabBar alloc] initWithFrame:CGRectMake(-320.0, 0.0, 320.0, CONTENT_HEIGHT)]autorelease];
+				self.aTabBar = [[[UITabBar alloc] initWithFrame:CGRectMake(-320.0, 0.0, 320.0, CONTENT_HEIGHT)]autorelease];
             }
 			
 			[self addSubview:self.aTabBar];
 			
 			if (self.bTabBar == nil) {
-				self.bTabBar = [[[VSTabBar alloc] initWithFrame:CGRectMake(count * 320.0, 0.0, 320.0, CONTENT_HEIGHT)] autorelease];
+				self.bTabBar = [[[UITabBar alloc] initWithFrame:CGRectMake(count * 320.0, 0.0, 320.0, CONTENT_HEIGHT)] autorelease];
             }
 			
 			[self addSubview:self.bTabBar];
@@ -142,7 +130,7 @@
 }
 
 - (void)setItems:(NSArray *)items animated:(BOOL)animated {
-	for (VSTabBar *tabBar in self.tabBars) {
+	for (UITabBar *tabBar in self.tabBars) {
 		int len = 0;
 		
 		for (int i = [self.tabBars indexOfObject:tabBar] * ITEMS_PER_PAGE; i < [self.tabBars indexOfObject:tabBar] * ITEMS_PER_PAGE + ITEMS_PER_PAGE; i ++) {
@@ -162,7 +150,7 @@
 }
 
 - (int)selectedItemTag {
-	for (VSTabBar *tabBar in self.tabBars)
+	for (UITabBar *tabBar in self.tabBars)
 		if (tabBar.selectedItem != nil)
 			return tabBar.selectedItem.tag;
 	
@@ -171,9 +159,9 @@
 }
 
 - (BOOL)scrollToTabBarWithTag:(int)tag animated:(BOOL)animated {
-	for (VSTabBar *tabBar in self.tabBars)
+	for (UITabBar *tabBar in self.tabBars)
 		if ([self.tabBars indexOfObject:tabBar] == tag) {
-			VSTabBar *tabBar = [self.tabBars objectAtIndex:tag];
+			UITabBar *tabBar = [self.tabBars objectAtIndex:tag];
 			
 			[self scrollRectToVisible:tabBar.frame animated:animated];
 			
@@ -186,10 +174,9 @@
 	return NO;
 }
 
-/*
 - (BOOL)selectItemWithTag:(int)tag {
-	for (VSTabBar *tabBar in self.tabBars)
-		for (VSTabBarItem *item in tabBar.items)
+	for (UITabBar *tabBar in self.tabBars)
+		for (UITabBarItem *item in tabBar.items)
 			if (item.tag == tag) {
 				tabBar.selectedItem = item;
 				
@@ -200,7 +187,6 @@
 	
 	return NO;
 }
- */
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 	[infiniTabBarDelegate infiniTabBar:self didScrollToTabBarWithTag:scrollView.contentOffset.x / 320.0];
@@ -211,12 +197,11 @@
 }
 
 
-/*
 - (void)tabBar:(UITabBar *)cTabBar didSelectItem:(UITabBarItem *)item {
 	// Act like a single tab bar
     
     
-	for (VSTabBar *tabBar in self.tabBars)
+	for (UITabBar *tabBar in self.tabBars)
 		if (tabBar != cTabBar)
 			tabBar.selectedItem = nil;
 	
@@ -225,7 +210,6 @@
      
     
 }
-*/
  
  
 - (void)dealloc {
@@ -234,14 +218,6 @@
 	[tabBars release];
 	
 	[super dealloc];
-}
-
-
-
-#pragma mark VSTabBar Delegate Methods
--(void) tabBar:(VSTabBar*)tabBar selectedItemWithIndex:(NSInteger)index
-{
-    
 }
 
 @end
